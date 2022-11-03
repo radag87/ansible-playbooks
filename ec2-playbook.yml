@@ -1,0 +1,9 @@
+- hosts: localhost
+  gather_facts: false
+  remote_user: root
+  become: yes
+  tasks:
+  - name: Make sure netcat is installed
+      yum:
+        name: netcat
+        state: present
