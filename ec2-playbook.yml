@@ -9,7 +9,7 @@
   tasks:
   - name: Make sure netcat is installed
     yum:
-      name: netcat
+      name: nmap-ncat
       state: present
   - name: Make sure jquery is installed
     yum:
