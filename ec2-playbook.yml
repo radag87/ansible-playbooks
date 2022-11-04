@@ -11,3 +11,48 @@
     yum:
       name: netcat
       state: present
+  - name: Make sure jquery is installed
+    yum:
+      name: jq
+      state: present
+  - name: Create nctest.sh
+    file:
+      path: /root/init/nctest.sh
+      content: |
+        #!/bin/bash
+        # nctest.sh
+        # this code is used to test a connection to a server until it works
+
+        if [[ -z $1 ]]; then
+          echo netcat.sh host port
+          exit 1
+        else
+          host=$1
+        fi
+
+        if [[ -z $2 ]]; then
+          echo netcat.sh host port
+          exit 1
+        else
+          port=$2
+        fi
+
+        myip=$(ip -j addr show dev eth0 | jq -r '.[0].addr_info | map(select(.family == "inet"))[0].local')
+        waittime=5
+        sleeptime=5
+
+        while true
+        do
+            mydate=$(TZ="America/Chicago" date)
+            echo ---------- $mydate
+            echo source: $myip
+            echo nc -v -w $waittime -z $host $port
+            nc -v -w $waittime -z $host $port
+            rc=$?
+            if [[ $rc -eq 0 ]]; then
+                exit 0
+            else
+                echo Sleeping $sleeptime seconds...
+                sleep $sleeptime
+            fi
+        done
