@@ -18,6 +18,7 @@
   - name: Create nctest.sh
     copy:
       dest: /root/init/nctest.sh
+      mode: 0755
       content: |
         #!/bin/bash
         # nctest.sh
