@@ -7,6 +7,6 @@
 
   tasks:
   - name: Make sure netcat is installed
-      yum:
-        name: netcat
-        state: present
+    yum:
+      name: netcat
+      state: present
