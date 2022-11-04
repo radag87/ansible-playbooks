@@ -1,7 +1,10 @@
-- hosts: localhost
+---
+- name: Update server
+  hosts: localhost
   gather_facts: false
   remote_user: root
   become: yes
+
   tasks:
   - name: Make sure netcat is installed
       yum:
