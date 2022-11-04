@@ -7,6 +7,10 @@
   become: yes
 
   tasks:
+  - name: Make sure htop is installed
+    yum:
+      name: htop
+      state: present
   - name: Make sure netcat is installed
     yum:
       name: nmap-ncat
