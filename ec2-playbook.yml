@@ -16,8 +16,8 @@
       name: jq
       state: present
   - name: Create nctest.sh
-    file:
-      path: /root/init/nctest.sh
+    copy:
+      dest: /root/init/nctest.sh
       content: |
         #!/bin/bash
         # nctest.sh
