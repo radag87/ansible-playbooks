@@ -1,6 +1,7 @@
 ---
 - name: Update server
   hosts: localhost
+  connection: local
   gather_facts: false
   remote_user: root
   become: yes
